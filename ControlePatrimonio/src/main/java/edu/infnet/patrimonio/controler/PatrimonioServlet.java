@@ -51,13 +51,13 @@ public class PatrimonioServlet extends HttpServlet {
 			}
 			//TODO CONVERTER OS VALORES
 			//TODO APLICAR VALORES AO MODELO
-			Patrimonio usuario = new Patrimonio(descricao, localizacao);
+			Patrimonio patrimonio = new Patrimonio(descricao, localizacao);
 			//TODO EXECUTAR LOGICA DE NEGOCIO
-			service.save(usuario);
+			service.save(patrimonio);
 		}
 		else {
 			if(service.validarpatrimonio(descricao, localizacao)) {
-				req.getSession().setAttribute("user", descricao);
+				req.getSession().setAttribute("descricao", descricao);
 			}else {
 				req.setAttribute("error", "descricao ou localizacao inválidos!");
 			}
