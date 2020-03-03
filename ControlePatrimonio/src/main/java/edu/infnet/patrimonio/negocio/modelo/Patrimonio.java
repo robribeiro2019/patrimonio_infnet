@@ -1,7 +1,13 @@
 package edu.infnet.patrimonio.negocio.modelo;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Patrimonio {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
 	
 	private String descricao;
