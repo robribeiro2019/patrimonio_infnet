@@ -19,15 +19,14 @@
 	
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <form class="form-horizontal" role="form">
-        <fieldset>
+    <form class="form-horizontal" action="<c:url value='/PatrSrv?action=new'/>" method="post" >
 
           <legend>Detalhe do Patrimônio (incluir)</legend>
 
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Descrição</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Descrição" class="form-control">
+              <input type="text" id="descricao" name="descricao" placeholder="Descrição" class="form-control">
             </div>
           </div>
 
@@ -35,20 +34,21 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Localização</label>
             <div class="col-sm-10">
-              <input type="text" placeholder="Localização" class="form-control">
+              <input type="text" id="localizacao" name="localizacao" placeholder="Localização" class="form-control">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" onclick="history.go(-1);" name="cancel">Voltar</button>
+                <button type="submit" class="btn btn-primary" name="save">Save</button>
               </div>
             </div>
           </div>
-
-        </fieldset>
+          <div class="form-group">
+            <h1>${requestScope.error}</h1>
+          </div>
       </form>
     </div>
 </div>

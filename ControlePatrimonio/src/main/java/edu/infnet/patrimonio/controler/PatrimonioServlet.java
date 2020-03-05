@@ -17,59 +17,48 @@ import edu.infnet.patrimonio.negocio.dao.PatrimonioDAO;
 import edu.infnet.patrimonio.negocio.modelo.Patrimonio;
 import edu.infnet.patrimonio.negocio.servico.PatrimonioService;
 
-@WebServlet(urlPatterns = {"/PatrSrv"})
+@WebServlet(urlPatterns = { "/PatrSrv" })
 public class PatrimonioServlet extends HttpServlet {
 
-	private static Logger logger = LogManager.getLogger(PatrimonioServlet.class);
-	
-	private PatrimonioService service;
-	
-	public PatrimonioServlet() {
-		this.service = new PatrimonioService();
-	}
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void doPost(HttpServletRequest req, 
-			HttpServletResponse resp) 
-					throws ServletException, IOException {
-		
-		logger.debug("Entrando no doPost");
-		
-		//TODO RECUPERAR O OBJETO DA REQUISICAO
-		String descricao = req.getParameter("descricao");
-		String localizacao =  req.getParameter("localizacao");
-		String action =  req.getParameter("action");
-		
-		if("new".equals(action)) {
-			//TODO VALIDAR O VALORES
-			if(StringUtils.isEmptyOrWhitespaceOnly(descricao)) {
-			}
-			//TODO CONVERTER OS VALORES
-			//TODO APLICAR VALORES AO MODELO
-			Patrimonio patrimonio = new Patrimonio(descricao, localizacao);
-			//TODO EXECUTAR LOGICA DE NEGOCIO
-			service.save(patrimonio);
-		}
-		else {
-			if(service.validarpatrimonio(descricao, localizacao)) {
-				req.getSession().setAttribute("descricao", descricao);
-			}else {
-				req.setAttribute("error", "descricao ou localizacao inválidos!");
-			}
-			
-		}
-		
-		req.getRequestDispatcher("pages/home.jsp")
-				.forward(req, resp);
+	public PatrimonioServlet() {
+		super();
 	}
-	
-	
+
+	private PatrimonioService service;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String descricao = request.getParameter("descricao");
+		String localizacao = request.getParameter("localizacao");
+		String action = request.getParameter("action");
+
+		try {
+
+			if ("new".equals(action)) {
+
+				if (service.validarpatrimonio(descricao, localizacao)) {
+					Patrimonio patrimonio = new Patrimonio(descricao, localizacao);
+					service.save(patrimonio);
+				} else {
+					request.setAttribute("error", "descricao ou localizacao inválidos!");
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("error", "Erro no no banco de dados!");
+		} finally {
+			request.getRequestDispatcher("pages/patrimonio.jsp").forward(request, response);
+		}
+	}
+
 }
-
-
-
