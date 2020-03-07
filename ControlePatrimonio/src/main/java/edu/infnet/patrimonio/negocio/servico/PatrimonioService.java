@@ -1,7 +1,5 @@
 package edu.infnet.patrimonio.negocio.servico;
 
-import java.util.Objects;
-
 import edu.infnet.patrimonio.negocio.dao.PatrimonioDAO;
 import edu.infnet.patrimonio.negocio.modelo.Patrimonio;
 
@@ -15,8 +13,7 @@ public class PatrimonioService {
 	
 	public Boolean validarpatrimonio(String descricao, String localizacao) {
 		
-		Patrimonio patrimonio = dao.getByDescricao(descricao);
-		if(!Objects.isNull(patrimonio) && patrimonio.getLocalizacao().equals(localizacao)) {
+		if(!"".equals(descricao) && !"".equals(localizacao)) {
 			return true;
 		}
 		

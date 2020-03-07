@@ -17,8 +17,11 @@ public class Patrimonio {
 	public Patrimonio() {
 	}
 
+	public Patrimonio(Integer id) {
+		this.id = id;
+	}
+	
 	public Patrimonio(Integer id, String descricao, String localizacao) {
-		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.localizacao = localizacao;

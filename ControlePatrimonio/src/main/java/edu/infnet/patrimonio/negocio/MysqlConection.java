@@ -2,6 +2,7 @@ package edu.infnet.patrimonio.negocio;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,14 @@ public class MysqlConection {
 		}
 		
 		return con;
+	}
+	
+	public static void closeConnection() {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

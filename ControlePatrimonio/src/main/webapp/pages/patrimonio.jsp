@@ -11,7 +11,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Patrimonio</title>
 </head>
 <body>
 
@@ -20,13 +20,15 @@
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
     <form class="form-horizontal" action="<c:url value='/PatrSrv?action=new'/>" method="post" >
+    
+    <input type="hidden" name="id" id="id" value="${id}">
 
-          <legend>Detalhe do Patrimônio (incluir)</legend>
+          <legend>Detalhe do Patrimônio</legend>
 
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Descrição</label>
             <div class="col-sm-10">
-              <input type="text" id="descricao" name="descricao" placeholder="Descrição" class="form-control">
+              <input type="text" id="descricao" name="descricao" placeholder="Descrição" class="form-control" value="${descricao}">
             </div>
           </div>
 
@@ -34,7 +36,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="textinput">Localização</label>
             <div class="col-sm-10">
-              <input type="text" id="localizacao" name="localizacao" placeholder="Localização" class="form-control">
+              <input type="text" id="localizacao" name="localizacao" value="${localizacao}" placeholder="Localização" class="form-control">
             </div>
           </div>
 
