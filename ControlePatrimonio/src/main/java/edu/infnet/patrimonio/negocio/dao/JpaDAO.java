@@ -12,37 +12,37 @@ public class JpaDAO<T, ID> {
 	protected Class<T> clazz;
 
 	public JpaDAO(Class<T> clazz) {
-		this.clazz = clazz;
 		this.em = JpaConnection.getEmf().createEntityManager();
+		this.clazz = clazz;
 	}
 
-	public List<T> findAll() {
-		return this.em.createQuery("from " + clazz.getName() , clazz).getResultList();
+	public Boolean save(T objeto) {
+		this.em.getTransaction().begin();
+		this.em.persist(objeto);
+		this.em.getTransaction().commit();				
+		return true;
+	}
+
+	public Boolean edit(T objeto) {
+		this.em.getTransaction().begin();
+		this.em.merge(objeto);
+		this.em.getTransaction().commit();				
+		return true;
+	}
+
+	public Boolean delete(T objeto) {
+		this.em.getTransaction().begin();
+		this.em.remove(objeto);
+		this.em.getTransaction().commit();				
+		return true;
 	}
 
 	public T find(ID id) {
 		return (T) this.em.find(clazz, id);
 	}
 
-	public Boolean delete(T entity) {
-		this.em.getTransaction().begin();
-		this.em.remove(entity);
-		this.em.getTransaction().commit();
-		return true;
-	}
-
-	public Boolean edit(T entity) {
-		this.em.getTransaction().begin();
-		this.em.merge(entity);
-		this.em.getTransaction().commit();
-		return true;
-	}
-
-	public Boolean save(T entity) {
-		this.em.getTransaction().begin();
-		this.em.persist(entity);
-		this.em.getTransaction().commit();
-		return true;
+	public List<T> findAll() {
+		return this.em.createQuery("from "+ clazz.getName() ,clazz).getResultList();
 	}
 
 }

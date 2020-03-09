@@ -1,17 +1,19 @@
 package edu.infnet.patrimonio.negocio.modelo;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "Patrimonio")
 public class Patrimonio {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
 	private Integer id;
-	
+	@Column
 	private String descricao;
-	
+	@Column
 	private String localizacao;
 	
 	public Patrimonio() {
@@ -61,44 +63,5 @@ public class Patrimonio {
 		return "Patrimonio [id=" + id + ", descricao=" + descricao + ", localizacao=" + localizacao + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + ((localizacao == null) ? 0 : localizacao.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Patrimonio other = (Patrimonio) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (localizacao == null) {
-			if (other.localizacao != null)
-				return false;
-		} else if (!localizacao.equals(other.localizacao))
-			return false;
-		return true;
-	}
-
-	
-	
 	
 }

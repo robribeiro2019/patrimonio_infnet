@@ -16,7 +16,7 @@
 	   <span class="navbar-header " >
 	      <h1>
 	        <a class="nav-header" 
-	        	href="<c:url value='/pages/home.jsp' /> ">
+	        	href="<c:url value='/' /> ">
 	        	Controle Patrimonial 
 	        </a>
 	      </h1> 

@@ -8,7 +8,6 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -29,8 +28,6 @@ function acao(acao,id,descricao,localizacao){
 }
 </script>
 
-
-
 </head>
 <body>
 
@@ -45,7 +42,7 @@ function acao(acao,id,descricao,localizacao){
 	<div class="row col-md-6 col-md-offset-2 custyle">
 		<table class="table table-striped custab">
 			<thead>
-			<a href="<c:url value='pages/patrimonio.jsp' />" class="btn btn-primary btn-xs pull-right"><b>+</b> Adicionar novo patrimônio</a>
+			<a href="<c:url value='pages/patrimonio.jsp'/>" class="btn btn-primary btn-xs pull-right"><b>+</b> Adicionar novo patrimônio</a>
 		    <tr>
 		        <th>ID</th>
 		        <th>Descrição</th>
@@ -53,15 +50,15 @@ function acao(acao,id,descricao,localizacao){
 		        <th class="text-center">Action</th>
 		    </tr>
 			</thead>
-			<c:forEach var="patrimonio" items="${lista_patrimonios}" >
+			<c:forEach var="patrimonio" items="${listaPatrimonios}" >
 			
 			<tr>
-			    <td>${patrimonio.id}</td>
-			    <td>${patrimonio.descricao}</td>
-			    <td>${patrimonio.localizacao}</td>
+			    <td><c:out value="${patrimonio.id}" /></td>
+			    <td><c:out value="${patrimonio.descricao}" /></td>
+			    <td><c:out value="${patrimonio.localizacao}" /></td>
 			    <td class="text-center">
-		    	<a class='btn btn-info btn-xs' onclick="acao('alterar','${patrimonio.id}','${patrimonio.descricao}','${patrimonio.localizacao}')"><span class="glyphicon glyphicon-edit"></span> Editar</a> 
-		    	<a class='btn btn-danger btn-xs' onclick="acao('deletar','${patrimonio.id}')" ><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+		    	<a class='btn btn-info btn-xs' onclick="acao('edit','${patrimonio.id}','${patrimonio.descricao}','${patrimonio.localizacao}')"><span class="glyphicon glyphicon-edit"></span> Editar</a> 
+		    	<a class='btn btn-danger btn-xs' onclick="acao('delete','${patrimonio.id}')" ><span class="glyphicon glyphicon-remove"></span> Excluir</a>
 		     	</td>
 		  	</tr>  
 
