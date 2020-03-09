@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Patrimonio {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	@Column
 	private String descricao;
