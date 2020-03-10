@@ -46,8 +46,10 @@ public class PatrimonioServlet extends HttpServlet {
 		String recurso = "pages/home.jsp";
 		
 		if("new".equals(action)) {
-			if(id != null) {
-				patrimonioService.atualizarPatrimonio(new Patrimonio(descricao, localizacao));
+			if(id != null && !"".equals(id)) {
+				patrimonioService.atualizarPatrimonio(new Patrimonio(Integer.parseInt(id), descricao, localizacao));
+			} else {
+				patrimonioService.salvarPatrimonio(new Patrimonio(descricao, localizacao));
 			}
 			recurso = "pages/home.jsp";
 		}
